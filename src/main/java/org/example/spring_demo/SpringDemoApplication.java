@@ -13,8 +13,4 @@ public class SpringDemoApplication {
         SpringApplication.run(SpringDemoApplication.class, args);
     }
 
-    @PostMapping("/accounts")
-    public Long createAccount(@RequestBody AccountRequestDTO accountRequestDTO){
-
-    }
 }
