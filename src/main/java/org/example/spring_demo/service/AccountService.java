@@ -1,6 +1,7 @@
 package org.example.spring_demo.service;
 
 import org.example.spring_demo.entity.Account;
+import org.example.spring_demo.exeption.AccountNotFoundException;
 import org.example.spring_demo.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,8 +16,13 @@ public class AccountService {
         this.accountRepository = accountRepository;
     }
 
-    public Long createAccount(String name, String email, Integer bill){
+    public Long createAccount(String name, String email, Integer bill) {
         Account account = new Account(name, email, bill);
         return accountRepository.save(account).getId();
+    }
+
+    public Account getAccountById(Long id) {
+        return accountRepository.findById(id)
+                .orElseThrow(() -> new AccountNotFoundException("Can't find account with id: " + id));
     }
 }
