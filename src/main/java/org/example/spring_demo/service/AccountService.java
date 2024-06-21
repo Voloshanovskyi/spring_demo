@@ -6,6 +6,8 @@ import org.example.spring_demo.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AccountService {
 
@@ -24,5 +26,15 @@ public class AccountService {
     public Account getAccountById(Long id) {
         return accountRepository.findById(id)
                 .orElseThrow(() -> new AccountNotFoundException("Can't find account with id: " + id));
+    }
+
+    public List<Account> getAll(){
+        return accountRepository.findAll();
+    }
+
+    public Account deleteById (Long id) {
+        Account account = getAccountById(id);
+        accountRepository.deleteById(id);
+        return account;
     }
 }
