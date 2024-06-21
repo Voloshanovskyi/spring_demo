@@ -10,4 +10,7 @@ public class SpringDemoApplication {
         SpringApplication.run(SpringDemoApplication.class, args);
     }
 
+    public Long createAccount(){
+
+    }
 }
